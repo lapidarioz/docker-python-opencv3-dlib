@@ -9,5 +9,15 @@ RUN wget https://codeload.github.com/davisking/dlib/zip/master -O dlib.zip && \
 WORKDIR /tmp/dlib
 RUN python setup.py install
 
-# Define default command.
-CMD ["bash"]
+
+# Download predictor file
+RUN mkdir -p /usr/src/files
+WORKDIR /usr/src/files
+
+
+RUN apt-get install -y bzip2 && \
+    wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 && \
+bzip2 -d shape_predictor_68_face_landmarks.dat.bz2
+
+COPY test.py /usr/src/files/
+RUN python /usr/src/files/test.py
