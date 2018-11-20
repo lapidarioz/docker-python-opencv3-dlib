@@ -4,8 +4,8 @@ FROM philipz/opencv3_python2.7
 RUN apt-get -y update
 RUN apt-get -y install libboost-python-dev
 WORKDIR /tmp
-RUN wget https://codeload.github.com/davisking/dlib/zip/master -O dlib.zip && \
-    unzip -q dlib.zip && mv dlib-master dlib
+RUN wget https://github.com/davisking/dlib/archive/v19.16.zip -O dlib.zip && \
+    unzip -q dlib.zip && mv dlib-19.16 dlib
 WORKDIR /tmp/dlib
 RUN python setup.py install
 
